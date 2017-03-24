@@ -1,0 +1,61 @@
+body {
+    0px;
+    font-family: arial;
+    color: #333;
+}
+
+h1,
+h2,
+nav {
+    margin: 0.1em;
+    text-align: center;
+}
+nav a:link {
+    margin: 0.5em;
+    padding: 0.125em;
+    border-radius: 0.25em;
+    text-decoration: none;
+    color: gray;
+}
+nav a:hover {
+    background-color: #CCF;
+}
+nav a:active {
+    background-color: #AAF;
+    color: white;
+}
+main {
+    text-align: justify;
+}
+footer {
+    color: gray;
+    text-align: right;
+    font-size: 12px;
+}
+
+.message {
+    background-color: #E5E5E5;
+    border-left: 0.5em solid navy;
+    margin: 0.25em;
+    padding: 0.25em;
+}
+.error {
+    border-left: 0.5em solid red;
+    color: red;
+}
+.warning {
+    border-left: 0.5em solid orange;
+    color: orange;
+}
+.notice {
+    border-left: 0.5em solid violet;
+    color: violet;
+}
+.info {
+    border-left: 0.5em solid lime;
+    color: black;
+}
+.debug {
+    border-left: 0.5em solid skyblue;
+    color: black;
+}
