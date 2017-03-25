@@ -27,6 +27,26 @@ nav a:active {
 main {
     text-align: justify;
 }
+main form label {
+    float: left;
+    text-align: right;
+    margin-right: 0.5em;
+    width: 10em;
+    color: #555;
+}
+main form input {
+    width: 15em;
+}
+main form input[type=text],
+main form input[type=password] {
+    border: none;
+    background-color: #EAEAEA;
+    border-bottom: 1px solid black;
+}
+main form input[type=text]:focus,
+main form input[type=password]:focus {
+    background-color: #DADADA;
+}
 footer {
     color: gray;
     text-align: right;

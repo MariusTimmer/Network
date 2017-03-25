@@ -6,6 +6,7 @@ abstract class NetworkDocument extends NetworkFragment {
     const LANGUAGE_GERMAN  = 'de';
     const LANGUAGE_DUTCH   = 'nl';
     const DEFAULT_TITLE = 'Network';
+    private $sessionmanager;
     protected $javascripts;
     protected $stylesheets;
     protected $title;
@@ -20,12 +21,21 @@ abstract class NetworkDocument extends NetworkFragment {
      */
     protected function __construct($title = NetworkDocument::DEFAULT_TITLE, $lang = NetworkDocument::LANGUAGE_ENGLISH) {
         parent::__construct();
+        $this->sessionmanager = new SessionManager();
         $this->title = $title;
         $this->lang = $lang;
         $this->javascripts = array();
         $this->stylesheets = array(
             'css/network.css'
         );
+    }
+
+    /**
+     * Returns the session manager.
+     * @return SessionManager Sessionmanager
+     */
+    public function getSessionManager() {
+        return $this->sessionmanager;
     }
 
     /**
@@ -74,6 +84,19 @@ abstract class NetworkDocument extends NetworkFragment {
      */
     protected function addStylesheet($url) {
         array_push($this->stylesheets, $url);
+    }
+
+    /**
+     * Checks if the requested value is set in the post data and returns it or the default value.
+     * @param String $key Key in the post data to check and use
+     * @param String $default_value Default value to return if the requested key is not available
+     * @return String Value of the post data or the default value
+     */
+    protected function getValue($key, $default_value = NULL) {
+        if (isset($_POST[$key])) {
+            return filter_input(INPUT_POST, $key, FILTER_SANITIZE_STRING);
+        }
+        return $default_value;
     }
 
     /**

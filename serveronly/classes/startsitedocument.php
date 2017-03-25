@@ -6,7 +6,7 @@ class StartSiteDocument extends FragmentedNetworkDocument {
 
     public function __construct() {
         parent::__construct(StartSiteDocument::TITLE);
-        $this->setSubtitle('Welcome to our comunity!');
+        $this->setSubtitle(gettext('Welcome to our comunity!'));
     }
 
     /**
@@ -31,8 +31,20 @@ class StartSiteDocument extends FragmentedNetworkDocument {
      * @return String HTML-Code
      */
     protected function buildMain() {
-        $textelement = new TextElement('This is an example text boy to show how the concept works.');
-        return $textelement;
+        $html = '';
+        if ($this->getSessionManager()->isLoggedIn()) {
+            $html .= new TextElement(gettext('Thank you for being a part of thes awesome network!'));
+        } else {
+            /**
+             * The current user is not logged in which means we have
+             * to offer an login formular to change that.
+             */
+            $login_formular = new FormularElement('login.php', gettext('Login'));
+            $login_formular->addContent(new LabeledTextInputElement(gettext("Username"), 'userid'));
+            $login_formular->addContent(new LabeledPasswordInputElement(gettext("Password"), 'password'));
+            $html .= $login_formular;
+        }
+        return $html;
     }
 
     /**
