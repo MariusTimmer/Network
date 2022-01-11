@@ -24,12 +24,12 @@ class BasicAutoloader {
     public static function load(string $classname) {
         $directory_prefix = __DIR__ . DIRECTORY_SEPARATOR;
         $directories = array(
-            'classes',
-            'classes'. DIRECTORY_SEPARATOR .'database',
-            'classes'. DIRECTORY_SEPARATOR .'guielements'
+            '',
+            'database'. DIRECTORY_SEPARATOR,
+            'guielements'. DIRECTORY_SEPARATOR
         );
         foreach ($directories AS $directory) {
-            $filename = $directory_prefix . $directory . DIRECTORY_SEPARATOR . strtolower($classname) .'.php';
+            $filename = $directory_prefix . $directory . $classname .'.php';
             if (file_exists($filename)) {
                 require_once($filename);
                 return true;
